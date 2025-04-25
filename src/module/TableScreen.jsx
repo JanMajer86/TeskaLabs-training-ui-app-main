@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, UncontrolledTooltip } from "reactstrap";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { DataTableCard2, DateTime } from "asab_webui_components";
 import axios from "axios";
 
@@ -14,7 +15,9 @@ export function TableScreen(props) {
 				const tooltipId = `tooltip-${row.id}`;
 				return (
 					<>
-						<a id={tooltipId}>{row.username}</a>
+						<Link to={`detail/${row.id}`} id={tooltipId}>
+							{row.username}
+						</Link>
 						<UncontrolledTooltip target={tooltipId}>
 							{row.id}
 						</UncontrolledTooltip>
@@ -57,7 +60,7 @@ export function TableScreen(props) {
 
 	return (
 		<Container className="h-100">
-			<DataTableCard2 columns={columns} loader={loader} />
+			<DataTableCard2 app={app} columns={columns} loader={loader} />
 		</Container>
 	);
 }
